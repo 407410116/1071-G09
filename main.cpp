@@ -54,7 +54,6 @@ int main()
 
     while(1)
     {
-        printf("->");
         scanf("%d", &choice);
         if(choice==5)
             break;
