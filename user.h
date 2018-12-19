@@ -4,6 +4,9 @@
 //原型宣告
 void cal();
 
+
+#endif // USER_H_INCLUDED
+
 /*struct Support
 {
     char *supfunc;
@@ -21,4 +24,3 @@ typedef node *nodePtr;
 void instructions(void);
 void stoFun(nodePtr *sptr, node item);*/
 
-#endif // USER_H_INCLUDED
