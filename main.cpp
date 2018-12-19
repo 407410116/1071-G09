@@ -40,3 +40,44 @@ int main()
 
 
 }
+
+/*int main(void)
+{
+    node item;
+    int choice;
+
+    item.inputfunc = (char *)malloc(sizeof(char)*50);
+
+    nodePtr startPtr = NULL;
+
+    instructions();
+
+    while(1)
+    {
+        printf("->");
+        scanf("%d", &choice);
+        if(choice==5)
+            break;
+        switch(choice)
+        {
+            case 1:
+                printf("Start your arithmetic:\n");
+                //funAri();
+                break;
+            case 2:
+                printf("Enter a function:\n");
+                gets(item.inputfunc);
+                stoFun(&startPtr, item);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+        printf("\n");
+    }
+    printf("The calculator is shutting down.");
+
+    return 0;
+}
+*/
