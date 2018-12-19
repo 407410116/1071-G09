@@ -64,7 +64,7 @@ int main()
                 //funAri();
                 break;
             case 2:
-                printf("Enter a function:\n");
+                printf("Enter a polynomial:\n");
                 gets(item.inputfunc);
                 stoFun(&startPtr, item);
                 break;
