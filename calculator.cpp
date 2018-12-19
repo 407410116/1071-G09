@@ -65,3 +65,13 @@ void cal()
 }
 
 
+/*void instructions(void)
+{
+    printf("Menu:\n"
+           "  1. Fundamental arithmetic.\n"
+           "  2. Store a equation.  (There are six variable you can use: a, b, c, x, y, z.)\n"
+           "  3. Store a algebra.\n"
+           "  4. Call a stored function and calculate it.\n"
+           "  5. Turn off the calculator.\n\n"
+           "Enter your choice: ");
+}*/
