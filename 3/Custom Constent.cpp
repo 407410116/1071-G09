@@ -22,7 +22,7 @@ int check(char N, int i)
     }
 }
 
-int search(char N, int i)
+int search(char N, int i)   //有問題
 {
     for(int n=1; n<=i; n++)
     {
@@ -68,7 +68,7 @@ int main()
                 printf("\n\n");
             }
             break;
-        case 2:
+        case 2:                     //還沒做
 
             printf("\n\n");
             break;
