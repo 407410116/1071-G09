@@ -2,37 +2,36 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Constent
+struct Constant
 {
     char Letter[];
     double num[];
 };
 
-Constent constent;
+Constant constant;
 
 int check(char N, int i)
 {
     for(int n=0; n<i; n++)
     {
-        if(constent.Letter[n] == N)
+        if(constant.Letter[n] == N)
         {
-            printf("Already have this Constent\n\n");
+            printf("Already have this Constant\n\n");
             return 0;
         }
     }
 }
 
-int search(char N, int i)   //有問題
+int search(char N, int i)           //有問題
 {
-    for(int n=1; n<=i; n++)
+    for(int n=0; n<i; n++)
     {
-        if(constent.Letter[n] == N)
-            printf("---%lf\n",constent.num[n]);
+        if(constant.Letter[n] == N)
+            printf("---%lf\n",constant.num[n]);
         else
-            printf("Can't found this Constent.\n");
+            printf("Can't found this Constant.\n");
     }
 }
-
 
 int main()
 {
@@ -42,9 +41,9 @@ int main()
     while(choose != 4)
     {
         printf("Choose the next move :\n"
-               "1. Insert a Constent.\n"
-               "2. Delete a Constent.\n"
-               "3. Search a Constent.\n"
+               "1. Insert a Constant.\n"
+               "2. Delete a Constant.\n"
+               "3. Serch a Constant.\n"
                "4. Back.\n"
                "-->");
         scanf("%d", &choose);
@@ -56,27 +55,27 @@ int main()
             i++;
             printf("Enter a Letter : ");
             fflush(stdin);
-            scanf("%c", &constent.Letter[i]);
-            if(check(constent.Letter[i],i) == 0)
+            scanf("%c", &constant.Letter[i]);
+            if(check(constant.Letter[i],i) == 0)
                 break;
             else
             {
-                printf("Enter a Constent : ");
-                scanf("%lf", &constent.num[i]);
-                printf("%c = %lf\n", constent.Letter[i], constent.num[i]);
+                printf("Enter a Constant : ");
+                scanf("%lf", &constant.num[i]);
+                printf("%c = %lf\n", constant.Letter[i], constant.num[i]);
 
                 printf("\n\n");
             }
             break;
-        case 2:                     //還沒做
+        case 2:                  //還沒做
 
             printf("\n\n");
             break;
         case 3:
         	printf("Enter a Letter : ");
         	fflush(stdin);
-            scanf("%c", &constent.Letter[i]);
-            search(constent.Letter[i],i);
+            scanf("%c", &constant.Letter[i]);
+            search(constant.Letter[i],i);
             
             printf("\n\n");
             break;
