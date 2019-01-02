@@ -95,8 +95,6 @@ int main()
                 constant.Letter[del(B,i)] = '\0';
                 del(B,i);
                 printf("%c has been deleted.\n", B);
-                printf("%d\n", del(B,i));
-                printf("%c\n", constant.Letter[del(B,i)]);
             }
             else
             {
