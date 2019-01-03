@@ -17,8 +17,9 @@ struct Element
 
 typedef struct ListNode
 {
-	int order;
+	int order=1;
 	Element data;
+	//float value[Max];
 	struct ListNode *next;
 }node;
 
@@ -81,9 +82,8 @@ void infix_to_postfix(nodePtr newnode)
 				put(newnode, i);
 				break;
 			case ')':
-				while(newnode->data.stack[top]!='('){
+				while(newnode->data.stack[top]!='(')
 					newnode->data.postfix[j++]=take(newnode);
-				}
 				take(newnode);
 				break;
 			case '-':
@@ -95,9 +95,8 @@ void infix_to_postfix(nodePtr newnode)
 	        case '!':
 	        case 'c':
 	        case 'p':
-	        	while(top!=-1 && (priority(newnode->data.stack[top]) >= priority(newnode->data.infix[i]))){
+	        	while(top!=-1 && (priority(newnode->data.stack[top]) >= priority(newnode->data.infix[i])))
 	        		newnode->data.postfix[j++]=take(newnode);
-	        	}
 	        	put(newnode, i);
 	        	break;
 	        default :
@@ -110,7 +109,7 @@ void infix_to_postfix(nodePtr newnode)
 	}
 }
 
-void value(nodePtr newnode)
+float value(nodePtr newnode)
 {
 	float a, b, combination, permutation;
 	for(unsigned int i=0; i<strlen(newnode->data.postfix); i++)
@@ -189,7 +188,14 @@ void value(nodePtr newnode)
 			temp++;
 		}
 	}
+	/*node item;
+	int i=0
+	item.value[i]=takef(newnode);
+	i++;*/
+	printf("-------------------------------------------------\n");
 	printf("%s = %f\n", newnode->data.infix, takef(newnode));
+	printf("-------------------------------------------------\n");
+	return takef(newnode);
 }
 
 void separate(nodePtr newnode)
@@ -209,20 +215,27 @@ void separate(nodePtr newnode)
 	amount--;
 }
 
-/*void reset(nodePtr newnode)
+void algebra(nodePtr newnode)
 {
-	top=-1;
-	for(int i=0; i<Max; i++)
+	char algebra[6]={'a', 'b', 'c', 'x', 'y', 'z'};
+	char variable[6];
+	int count=0;
+	for(unsigned int i=0; i<strlen(newnode->data.infix); i++)
 	{
-		newnode->data.stack[i]=0;
-		newnode->data.stackf[i]=0;
-		newnode->data.infix[i]=0;
-		newnode->data.postfix[i]=0;
-		newnode->data.count[i]=0;
+		for(int j=0; j<6; j++)
+		{
+			if(newnode->data.infix[i]==algebra[j])
+			{
+				printf("%c = ",newnode->data.infix[i]);
+				scanf("%c", &variable[count]);
+				newnode->data.infix[i]=variable[count];
+				count++;
+			}
+		}
 	}
-}*/
+}
 
-void insertFunction(nodePtr *start)
+void polynomial(nodePtr *start, node item)
 {
 	nodePtr newnode;
 	nodePtr previous;
@@ -230,14 +243,13 @@ void insertFunction(nodePtr *start)
 
 	newnode = (node *)malloc(sizeof(node));
 
-
+	newnode->order = item.order;
+    
 	gets(newnode->data.infix);
+	algebra(newnode);
 	separate(newnode);
 	infix_to_postfix(newnode);
-	/*for(unsigned int i=0;i<strlen(newnode->data.postfix);i++)                 
-        	printf("%c..\n",newnode->data.postfix[i]);*/
 	value(newnode);
-
 
 	newnode->next=NULL;
 
@@ -260,7 +272,6 @@ void insertFunction(nodePtr *start)
 				current = current->next;
 			}
 		}
-
 		if(previous == NULL && current != NULL)
 		{
 			newnode->next = current;
@@ -276,15 +287,132 @@ void insertFunction(nodePtr *start)
 			previous->next = newnode;
 		}
 	}
+
+}
+/*
+int deleteValue(nodePtr *start, node item)
+{
+    nodePtr previous;
+    nodePtr current;
+    nodePtr temp;
+
+    if(item.order == (*start)->order)
+    {
+        temp = current;
+        *start = (*start)->next;
+        free(temp);
+        return item.order;
+    }
+    else
+    {
+        previous = *start;
+        current = (*start)->next;
+
+        while(current != NULL  &&  current->order != item.order)
+        {
+            previous = current;
+            current = current->next;
+        }
+
+        if(current != NULL)
+        {
+            temp = current;
+            previous->next = current->next;
+            free(temp);
+            return item.order;
+        }
+    }
+    return 0;
+}*/
+
+void printValue(nodePtr current)
+{
+	int i=1;
+    if(current == NULL)
+        printf( "There is no value.\n" );
+    else
+    {
+        printf( "All value:\n" );
+        while(current != NULL)
+        {
+           printf("%d. %lf ", current->order, value(current));
+           current = current->next;
+           i++;
+        }
+        printf( "......\n" );
+    }
 }
 
+int detEmpty(nodePtr start)
+{
+    return start == NULL;
+}
+
+void instructions(void)
+{
+	printf("Enter instruction:\n"
+		   "  1. Simple arithmetic. (Only + - * /)\n"
+		   "  2. Calculate polynomial and store its value.\n"
+		   "  3. Delete a value.\n"
+		   "  4. Show all value.\n"
+		   "  5. Store a algebra.\n"
+		   "  6. Delete a algebra.\n"
+		   "  7. Turn off calculator.\n"
+		   "--> ");
+}
 
 int main(void)
 {
 	nodePtr start=NULL;
-	while(1)
+	node item;
+	int choice;
+
+	instructions();
+	scanf("%d", &choice);
+	fflush(stdin);
+	while(choice!=7)
 	{
-		insertFunction(&start);
+		switch(choice)
+		{
+			case 1:
+				break;
+			case 2:
+				printf("Start arithmetic:\n");
+				polynomial(&start, item);
+				//item.order++;
+				break;/*
+			case 3:
+				if(!detEmpty(start))
+                {
+                    printf("Enter order to be deleted: ");
+                    scanf("%d", &item.order);
+
+                    if(deleteValue(&start, item))
+                    {
+                        printf("Value NO.%d was deleted.\n", item.order);
+                        printValue(start);
+                    }
+                    else
+                        printf("Value NO.%d not found.\n\n", item.order);
+                }
+                else
+                    printf("There is no value.\n\n");
+				break;*/
+			case 4:
+			    printValue(start);
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+		}
+		printf("Next instruction: \n"
+			   "--> ");
+		scanf("%d", &choice);
+		fflush(stdin);
+		if(choice==7)
+			break;
 	}
+	printf("The calculator is shutting down.");
 	return 0;
 }
