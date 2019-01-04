@@ -21,7 +21,7 @@ void cal()
             printf("Choice (+ - * /):");
             scanf("%c",&ch);
 
-            ch=getche();
+            ch=getchar();
             if(ch=='+')
             {
                 printf("\n");
