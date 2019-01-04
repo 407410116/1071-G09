@@ -54,10 +54,10 @@ void cal3()
 
     while(choose != 4)
     {
-        printf("Choose the next move :\n"
+        printf("Choose the next step :\n"
                "1. Insert a Constant.\n"
                "2. Delete a Constant.\n"
-               "3. Serch a Constant.\n"
+               "3. Search a Constant.\n"
                "4. Back.\n"
                "-->");
         scanf("%d", &choose);
